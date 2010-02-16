@@ -16,6 +16,7 @@ A tabular data presentation tool.
 ## Setting up a Grid
 
 There are 5 steps for creating a grid.
+
 1. Instantiate a grid object
 1. Specify action links (if any)
 1. Specify columns

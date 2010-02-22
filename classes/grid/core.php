@@ -1,8 +1,12 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * @brief   Grid modeling library for creating data tables
- * @author  Kyle Treubig
+ * Grid modeling library for creating data tables
+ *
+ * @package     Grid
+ * @author      Kyle Treubig
+ * @copyright   (C) 2010 Kyle Treubig
+ * @license     MIT
  */
 class Grid_Core {
 
@@ -16,6 +20,7 @@ class Grid_Core {
     /**
      * Add a column to the table
      * @param type  [optional] column type
+     * @return      Grid_Column object
      */
     public function &column($type='text') {
         $model = 'Grid_Column_' . ucfirst($type);
@@ -29,6 +34,7 @@ class Grid_Core {
     /**
      * Add an action link to the table
      * @param type  [optional] link type
+     * @return      Grid_Link object
      */
     public function &link($type='text') {
         $link = new Grid_Link($type);
@@ -41,6 +47,7 @@ class Grid_Core {
     /**
      * Add data to the table
      * @param resource  array of data objects
+     * @return          Grid object
      */
     public function data($resource) {
         $dataset = array();
@@ -54,6 +61,8 @@ class Grid_Core {
 
     /**
      * Render the table as an HTML string
+     * @param view  [optional] view file
+     * @return      string
      */
     public function render($view = 'grid/table') {
         $view = View::factory($view);

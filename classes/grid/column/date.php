@@ -1,8 +1,12 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * @brief   Date column for Grid library
- * @author  Kyle Treubig
+ * Date column for Grid library
+ *
+ * @package     Grid
+ * @author      Kyle Treubig
+ * @copyright   (C) 2010 Kyle Treubig
+ * @license     MIT
  */
 class Grid_Column_Date extends Grid_Column {
 

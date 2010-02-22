@@ -1,8 +1,12 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * @brief   Radio column for Grid library
- * @author  Kyle Treubig
+ * Radio column for Grid library
+ *
+ * @package     Grid
+ * @author      Kyle Treubig
+ * @copyright   (C) 2010 Kyle Treubig
+ * @license     MIT
  */
 class Grid_Column_Radio extends Grid_Column {
 

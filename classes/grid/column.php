@@ -1,8 +1,12 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * @brief   Grid column model base class
- * @author  Kyle Treubig
+ * Grid column model base class
+ *
+ * @package     Grid
+ * @author      Kyle Treubig
+ * @copyright   (C) 2010 Kyle Treubig
+ * @license     MIT
  */
 abstract class Grid_Column {
 

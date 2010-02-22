@@ -1,8 +1,12 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
- * @brief   Grid table action link model
- * @author  Kyle Treubig
+ * Grid table action link model
+ *
+ * @package     Grid
+ * @author      Kyle Treubig
+ * @copyright   (C) 2010 Kyle Treubig
+ * @license     MIT
  */
 class Grid_Link {
 
@@ -26,6 +30,7 @@ class Grid_Link {
      * through method calls
      * @param name  variable name
      * @param value variable value
+     * @return      Grid_Link object
      */
     public function __call($name, $value) {
         if ((isset($this->$name)) OR ($this->$name === null)) {
@@ -36,6 +41,7 @@ class Grid_Link {
 
     /**
      * Render the link as an HTML string
+     * @return  string
      */
     public function render() {
         switch($this->type) {

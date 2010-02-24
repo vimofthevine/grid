@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct access allowed.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 /**
  * Radio column for Grid library
@@ -10,21 +10,29 @@
  */
 class Grid_Column_Radio extends Grid_Column {
 
-    /** Dataset field to use as radio value, defaults to "id" */
-    public $field = 'id';
-    /** Radio field name */
-    public $name;
+	/**
+	 * @var string  dataset record field to use as radio value, defaults to "id"
+	 */
+	public $field = 'id';
 
-    /**
-     * Render the table cell for this column, given data.
-     * Returns a radio field for the specified dataset field.
-     * @param data  dataset object
-     * @return      string
-     */
-    public function render($data) {
-        $data = (object) $data;
-        return form::radio($this->name, $data->{$this->field});
-    }
+	/**
+	 * @var string  radio field name
+	 */
+	public $name;
 
-}
+	/**
+	 * Render the table cell for this column, given data.
+	 *
+	 * Returns a radio field for the specified dataset field.
+	 *
+	 * @param   object  dataset record
+	 * @param   array   dataset record
+	 * @return  string
+	 */
+	public function render($data) {
+		$data = (object) $data;
+		return form::radio($this->name, $data->{$this->field});
+	}
+
+}	// End of Grid_Column_Radio
 

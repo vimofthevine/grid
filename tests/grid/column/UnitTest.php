@@ -1,4 +1,4 @@
-﻿<?php defined('SYSPATH') OR die('No direct access allowed.');
+﻿<?php defined('SYSPATH') OR die('No direct script access.');
 
 /**
  * Grid module column model unit tests

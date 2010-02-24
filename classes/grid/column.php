@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct access allowed.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 /**
  * Grid column model base class
@@ -10,22 +10,30 @@
  */
 abstract class Grid_Column {
 
-    /** Dataset field */
-    public $field;
-    /** Column title */
-    public $title;
+	/**
+	 * @var string  dataset record field
+	 */
+	public $field;
 
-    /**
-     * Magic call method to set variable member when
-     * variable method is called
-     * @param name  variable name
-     * @param value variable value
-     */
-    public function __call($name, $value) {
-        if ((isset($this->$name)) OR ($this->$name === null)) {
-            $this->$name = $value[0];
-        }
-        return $this;
-    }
+	/**
+	 * @var string  column title
+	 */
+	public $title;
+
+	/**
+	 * Magic call method to set variable member when
+	 * variable method is called
+	 *
+	 * @param   string      variable name
+	 * @param   string      variable value
+	 * @return  Grid_Column
+	 */
+	public function __call($name, $value) {
+		if ((isset($this->$name)) OR ($this->$name === null))
+		{
+			$this->$name = $value[0];
+		}
+		return $this;
+	}
 
 }

@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct access allowed.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 /**
  * Action column for the Grid library
@@ -10,26 +10,40 @@
  */
 class Grid_Column_Action extends Grid_Column {
 
-    /** Dataset field to append to action URL, defaults to "id" */
-    public $field = 'id';
-    /** Action URL */
-    public $action;
-    /** Display text */
-    public $text;
-    /** Display image */
-    public $img;
+	/**
+	 * @var string  dataset record field to append to action URL, defaults to "id"
+	 */
+	public $field = 'id';
 
-    /**
-     * Render the table cell for this column, given data.
-     * Returns a link to the action url.
-     * @param data  dataset object
-     * @return      string
-     */
-    public function render($data) {
-        $data = (object) $data;
-        $text = empty($this->img) ? $this->text : $this->img;
-        return html::anchor($this->action . '/' . $data->{$this->field}, $text);
-    }
+	/**
+	 * @var string  action URL
+	 */
+	public $action;
 
-}
+	/**
+	 * @var string  display text
+	 */
+	public $text;
+
+	/**
+	 * @var string  display image
+	 */
+	public $img;
+
+	/**
+	 * Render the table cell for this column, given data.
+	 *
+	 * Returns a link to the action url.
+	 *
+	 * @param   object  dataset record
+	 * @param   array   dataset record
+	 * @return  string
+	 */
+	public function render($data) {
+		$data = (object) $data;
+		$text = empty($this->img) ? $this->text : $this->img;
+		return html::anchor($this->action.'/'.$data->{$this->field}, $text);
+	}
+
+}	// End of Grid_Column_Action
 

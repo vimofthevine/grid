@@ -31,6 +31,11 @@ class Grid_Column_Action extends Grid_Column {
 	public $img;
 
 	/**
+	 * @var string  record field to use as display text
+	 */
+	public $display_field;
+
+	/**
 	 * Render the table cell for this column, given data.
 	 *
 	 * Returns a link to the action url.
@@ -42,6 +47,9 @@ class Grid_Column_Action extends Grid_Column {
 	public function render($data) {
 		$data = (object) $data;
 		$text = empty($this->img) ? $this->text : $this->img;
+		$text = empty($this->display_field)
+			? $text
+			: $data->{$this->display_field};
 		return html::anchor($this->action.'/'.$data->{$this->field}, $text);
 	}
 

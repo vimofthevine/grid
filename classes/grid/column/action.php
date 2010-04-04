@@ -21,6 +21,11 @@ class Grid_Column_Action extends Grid_Column {
 	public $action;
 
 	/**
+	 * @var string  CSS class
+	 */
+	public $class;
+
+	/**
 	 * @var string  display text
 	 */
 	public $text;
@@ -50,7 +55,8 @@ class Grid_Column_Action extends Grid_Column {
 		$text = empty($this->display_field)
 			? $text
 			: $data->{$this->display_field};
-		return html::anchor($this->action.'/'.$data->{$this->field}, $text);
+		$class = empty($this->class) ? array() : array('class' => $this->class);
+		return html::anchor($this->action.'/'.$data->{$this->field}, $text, $class);
 	}
 
 }	// End of Grid_Column_Action

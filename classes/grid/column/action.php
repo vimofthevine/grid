@@ -18,7 +18,22 @@ class Grid_Column_Action extends Grid_Column {
 	/**
 	 * @var string  action URL
 	 */
-	public $action;
+	public $url;
+
+	/**
+	 * @var Route   action route
+	 */
+	public $route;
+
+	/**
+	 * @var params  route parameters
+	 */
+	public $params;
+
+	/**
+	 * @var param   route parameter to modify
+	 */
+	public $param;
 
 	/**
 	 * @var string  CSS class
@@ -31,16 +46,6 @@ class Grid_Column_Action extends Grid_Column {
 	public $text;
 
 	/**
-	 * @var string  display image
-	 */
-	public $img;
-
-	/**
-	 * @var string  record field to use as display text
-	 */
-	public $display_field;
-
-	/**
 	 * Render the table cell for this column, given data.
 	 *
 	 * Returns a link to the action url.
@@ -50,13 +55,30 @@ class Grid_Column_Action extends Grid_Column {
 	 * @return  string
 	 */
 	public function render($data) {
-		$data = (object) $data;
-		$text = empty($this->img) ? $this->text : $this->img;
-		$text = empty($this->display_field)
-			? $text
-			: $data->{$this->display_field};
+		$data  = (object) $data;
+		$value = $data->{$this->field};
+		$text  = $this->text;
+
+		// If text is in {field} notation, use dynamic text
+		if (preg_match('/\{(\w+)\}/', $this->text, $matches))
+		{
+			$text = $data->{$matches[1]};
+		}
+
 		$class = empty($this->class) ? array() : array('class' => $this->class);
-		return html::anchor($this->action.'/'.$data->{$this->field}, $text, $class);
+
+		if (empty($this->route))
+		{
+			$url = $this->url.'/'.$value;
+		}
+		else
+		{
+			$param = empty($this->param) ? $this->field : $this->param;
+			$params = $this->params + array($param => $value);
+			$url = $this->route->uri($params);
+		}
+
+		return HTML::anchor($url, $text, $class);
 	}
 
 }	// End of Grid_Column_Action

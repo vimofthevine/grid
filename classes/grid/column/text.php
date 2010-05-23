@@ -11,11 +11,6 @@
 class Grid_Column_Text extends Grid_Column {
 
 	/**
-	 * @var string  sub-member of dataset record value to print
-	 */
-	public $member   = null;
-
-	/**
 	 * @var string  callback function
 	 * @var array   callback class and method
 	 */
@@ -34,10 +29,6 @@ class Grid_Column_Text extends Grid_Column {
 	public function render($data) {
 		$data = (object) $data;
 		$text = $data->{$this->field};
-		if ( ! empty($this->member))
-		{
-			$text = $text->{$this->member};
-		}
 		if ( ! empty($this->callback))
 		{
 			$text = call_user_func($this->callback, $text);

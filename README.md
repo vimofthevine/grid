@@ -9,7 +9,7 @@ A tabular data presentation tool.
     $grid->column()->field('id')->title('Entry ID');
     $grid->column()->field('title')->title('Entry Title');
     $grid->column('date')->title('Creation Date');
-    $grid->column('action')->title('Edit')->action('entries/edit')->text('edit');
+    $grid->column('action')->title('Edit')->url('entries/edit')->text('edit');
     $grid->data($dataset);
     echo $grid;
 
@@ -102,14 +102,6 @@ Additional attributes include:
 
 callback
 : a callback function to execute prior to printing
-member
-: if `field` represents an object, use the member variable of the object
-
-For example,
-    $grid->column()->title('Author')->field('author')->member('name');
-
-Will produce
-    <td><?php echo $record->$field->member; ?></td>
 
 #### Date Column
     $grid->column('date')->title('Created')->field('created');
@@ -125,7 +117,9 @@ format
 The `field` attribute defaults to "date".
 
 #### Action Column
-    $grid->column('action')->title('Details')->action('controller/method')->field('id')->text('view');
+    $grid->column('action')->title('Details')->url('controller/method')->field('id')->text('view');
+    // OR
+    $grid->column('action')->title('Details')->route('default')->params(array('controller'=>'controller', 'action'=>'method'))->param('id')->text('view');
 
 Will produce
     <tr>
@@ -140,12 +134,16 @@ Will produce
     </tr>
 
 Additional attributes include:
-action
-: url (or route) to use as the link target
+url
+: string url to use as the link target
+route
+: use a given route instead of a string
+params
+: parameters to use with the given route
+param
+: the route parameter to set with the specified record field
 text
-: the text to use for the link
-img
-: an image to use instead of text (text is used as alt attribute)
+: the text to use for the link; if specified as {field}, then the value of record->{field} will be displayed
 
 Note:
 The field attribute defaults to "id", and the value of the field is
